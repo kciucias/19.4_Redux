@@ -34,7 +34,7 @@ export function thumbUpComment(id) {
     return {
         type: THUMB_UP_COMMENT,
         id,
-        vote: vote +1
+        votes: votes +1
     }
 }
 
@@ -42,7 +42,7 @@ export function thumbDownComment(id) {
     return {
         type: THUMB_DOWN_COMMENT,
         id,
-        vote: vote -1
+        votes: votes -1
     }
 }
 

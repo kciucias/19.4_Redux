@@ -6,7 +6,7 @@ const initialState = {
 };
 
 
-function comments(state, action) {
+function comments(state = [], action) {
 	switch(action.type) {
 		case ADD_COMMENT:
 			return [{
@@ -23,11 +23,13 @@ function comments(state, action) {
         		comments: state.comments.map(comment => (comment.id === action.id ? {...comment, text: action.text} : comment))
    		case THUMB_UP_COMMENT:
         	return 
-        		comments: state.comments.map(comment => (comment.id === action.id ? {...comment, comment.votes +1} : comment))
-        case THUMB_UP_COMMENT:
+        		comments: state.comments.map(comment => (comment.id === action.id ? {...comment, votes: action.votes} : comment))
+        case THUMB_DOWN_COMMENT:
         	return 
-        		comments: state.comments.map(comment => (comment.id === action.id ? {...comment, comment.votes +1} : comment))
+        		comments: state.comments.map(comment => (comment.id === action.id ? {...comment, votes: action.votes} : comment))
 		default:
 			return state;
 	}
 }
+
+/*Filter receives the same arguments as map, and works very similarly. The only difference is that the callback needs to return either true or false. If it returns true then the array keeps that element and if it returns false the element is filtered out.*/
