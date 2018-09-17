@@ -10,7 +10,7 @@ function comments(state = [], action) {
 	switch(action.type) {
 		case ADD_COMMENT:
 			return [
-				...state.comments,
+				...state,
 				{
 					id: action.id,
 					text: action.text,
@@ -19,7 +19,7 @@ function comments(state = [], action) {
 			];
 		case REMOVE_COMMENT:
             return [
-            	state.comments.filter(comment => comment.id !== action.id)
+            	state.filter(comment => comment.id !== action.id)
             ];
         case EDIT_COMMENT:
         	return
@@ -31,7 +31,7 @@ function comments(state = [], action) {
         		});
    		case THUMB_UP_COMMENT:
         	return 
-        		state.comments.map(comment => {
+        		state.map(comment => {
         			if (comment.id === action.id) {
         				comment.votes +1;
         			}
@@ -39,7 +39,7 @@ function comments(state = [], action) {
         		});
         case THUMB_DOWN_COMMENT:
         	return 
-        		state.comments.map(comment => {
+        		state.map(comment => {
         			if (comment.id === action.id) {
         				comment.votes -1;
         			}
