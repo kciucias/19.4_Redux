@@ -9,27 +9,48 @@ const initialState = {
 function comments(state = [], action) {
 	switch(action.type) {
 		case ADD_COMMENT:
-			return [{
-				id: action.id,
-				text: action.text,
-				votes: 0
-			}
-			, ...state.comments];
+			return [
+				...state.comments,
+				{
+					id: action.id,
+					text: action.text,
+					votes: 0
+				}
+			];
 		case REMOVE_COMMENT:
-            return 
-            	comments: state.comments.filter(comment => comment.id !== action.id)
+            return [
+            	state.comments.filter(comment => comment.id !== action.id)
+            ];
         case EDIT_COMMENT:
-        	return 
-        		comments: state.comments.map(comment => (comment.id === action.id ? {...comment, text: action.text} : comment))
+        	return
+        		state.comments.map(comment => {
+        			if (comment.id === action.id) {
+        				comment.name = action.name;
+        			}
+        			return comment;
+        		});
    		case THUMB_UP_COMMENT:
         	return 
-        		comments: state.comments.map(comment => (comment.id === action.id ? {...comment, votes: action.votes} : comment))
+        		state.comments.map(comment => {
+        			if (comment.id === action.id) {
+        				comment.votes +1;
+        			}
+        			return comment;
+        		});
         case THUMB_DOWN_COMMENT:
         	return 
-        		comments: state.comments.map(comment => (comment.id === action.id ? {...comment, votes: action.votes} : comment))
+        		state.comments.map(comment => {
+        			if (comment.id === action.id) {
+        				comment.votes -1;
+        			}
+        			return comment;
+        		});
+        		
 		default:
 			return state;
 	}
 }
 
-/*Filter receives the same arguments as map, and works very similarly. The only difference is that the callback needs to return either true or false. If it returns true then the array keeps that element and if it returns false the element is filtered out.*/
+/*Filter receives the same arguments as map, and works very similarly. 
+The only difference is that the callback needs to return either true or false. 
+If it returns true then the array keeps that element and if it returns false the element is filtered out.*/

@@ -33,16 +33,14 @@ function removeComment(id) {
 export function thumbUpComment(id) {
     return {
         type: THUMB_UP_COMMENT,
-        id,
-        votes: votes +1
+        id
     }
 }
 
 export function thumbDownComment(id) {
     return {
         type: THUMB_DOWN_COMMENT,
-        id,
-        votes: votes -1
+        id
     }
 }
 
