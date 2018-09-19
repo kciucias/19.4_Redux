@@ -22,30 +22,32 @@ function comments(state = [], action) {
             	state.filter(comment => comment.id !== action.id)
             ];
         case EDIT_COMMENT:
-        	return
+        	return (
         		state.comments.map(comment => {
         			if (comment.id === action.id) {
         				comment.name = action.name;
         			}
         			return comment;
         		});
+            );
    		case THUMB_UP_COMMENT:
-        	return 
+        	return (
         		state.map(comment => {
         			if (comment.id === action.id) {
         				comment.votes +1;
         			}
         			return comment;
         		});
+            );
         case THUMB_DOWN_COMMENT:
-        	return 
+        	return (
         		state.map(comment => {
         			if (comment.id === action.id) {
         				comment.votes -1;
         			}
         			return comment;
         		});
-        		
+            );
 		default:
 			return state;
 	}
